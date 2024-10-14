@@ -12,7 +12,7 @@ type CardWrapperProps = {
   children: React.ReactNode;
   cardTitle: string;
   backButtonHref: string;
-  backButtonlabel: string;
+  backButtonLabel: string;
   showSocials: boolean;
 };
 
@@ -20,7 +20,7 @@ export const AuthCard = ({
   children,
   cardTitle,
   backButtonHref,
-  backButtonlabel,
+  backButtonLabel,
   showSocials,
 }: CardWrapperProps) => {
   return (
@@ -35,7 +35,7 @@ export const AuthCard = ({
         </CardFooter>
       )}
       <CardFooter>
-        <BackButton href={backButtonHref} label={backButtonlabel} />
+        <BackButton href={backButtonHref} label={backButtonLabel} />
       </CardFooter>
     </Card>
   );
