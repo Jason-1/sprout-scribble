@@ -15,6 +15,13 @@
       "when": 1728610107888,
       "tag": "0001_nice_jimmy_woo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729028835390,
+      "tag": "0002_smart_bruce_banner",
+      "breakpoints": true
     }
   ]
 }
