@@ -3,6 +3,7 @@ import { UserButton } from "./user-button";
 import Link from "next/link";
 import Logo from "@/components/navigation/logo";
 import { LogIn } from "lucide-react";
+import { Button } from "../ui/button";
 
 export default async function Nav() {
   const session = await auth();
@@ -19,12 +20,16 @@ export default async function Nav() {
 
           {!session ? (
             <li>
-              <button>
-                <Link aria-label="sign-in" href={"/auth/login"}>
+              <Button asChild>
+                <Link
+                  className="flex gap-2"
+                  aria-label="sign-in"
+                  href={"/auth/login"}
+                >
                   <LogIn size={16} />
                   <span>Login</span>
                 </Link>
-              </button>
+              </Button>
             </li>
           ) : (
             <li>
