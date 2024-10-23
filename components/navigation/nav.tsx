@@ -2,6 +2,7 @@ import { auth } from "@/server/auth";
 import { UserButton } from "./user-button";
 import Link from "next/link";
 import Logo from "@/components/navigation/logo";
+import { LogIn } from "lucide-react";
 
 export default async function Nav() {
   const session = await auth();
@@ -9,23 +10,27 @@ export default async function Nav() {
   return (
     <header className="py-8">
       <nav>
-        <ul className="flex justify-between">
+        <ul className="flex justify-between items-center">
           <li>
-            <Link href={"/"}>
+            <Link href="/" aria-label="sprout and scribble logo">
               <Logo />
             </Link>
           </li>
-          <li>
-            {!session ? (
+
+          {!session ? (
+            <li>
               <button>
                 <Link aria-label="sign-in" href={"/auth/login"}>
-                  login
+                  <LogIn size={16} />
+                  <span>Login</span>
                 </Link>
               </button>
-            ) : (
+            </li>
+          ) : (
+            <li>
               <UserButton expires={session?.expires} user={session?.user} />
-            )}
-          </li>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
