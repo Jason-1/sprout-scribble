@@ -58,8 +58,8 @@ export const UserButton = ({ user }: Session) => {
                 src={user.image}
                 alt={user.name!}
                 className="rounded-full"
-                width={36}
-                height={36}
+                width={72}
+                height={72}
               />
             )}
             <p className="font-bold text-xs">{user.name}</p>

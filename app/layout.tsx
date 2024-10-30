@@ -5,6 +5,7 @@ import "./globals.css";
 import Nav from "@/components/navigation/nav";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import Toaster from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={cn("px-6 md:px-12 max-w-7xl", `${inter.className}`)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Nav />
+          <Toaster />
           {children}
         </ThemeProvider>
       </body>
