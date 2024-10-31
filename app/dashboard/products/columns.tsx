@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import Image from "next/image";
+import { useAction } from "next-safe-action/hooks";
+import { deleteProduct } from "@/server/actions/delete-product";
+import { toast } from "sonner";
 
 type ProductColumn = {
   title: string;
@@ -22,6 +25,19 @@ type ProductColumn = {
   variants: any;
   id: number;
 };
+
+async function deleteProductWrapper(id: number) {
+  const data = await deleteProduct({ id });
+  if (!data) {
+    return new Error("No data found");
+  }
+  if (data.data?.success) {
+    toast.success(data.data?.success);
+  }
+  if (data.data?.error) {
+    toast.success(data.data?.error);
+  }
+}
 
 export const columns: ColumnDef<ProductColumn>[] = [
   {
@@ -85,7 +101,10 @@ export const columns: ColumnDef<ProductColumn>[] = [
             <DropdownMenuItem className="dark:focus:bg-primary focus:bg-primary/50 cursor-pointer">
               Edit Product
             </DropdownMenuItem>
-            <DropdownMenuItem className="dark:focus:bg-destructive focus:bg-destructive/50 cursor-pointer">
+            <DropdownMenuItem
+              onClick={() => deleteProductWrapper(product.id)}
+              className="dark:focus:bg-destructive focus:bg-destructive/50 cursor-pointer"
+            >
               Delete Product
             </DropdownMenuItem>
           </DropdownMenuContent>
