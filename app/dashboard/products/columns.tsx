@@ -1,6 +1,6 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, Row } from "@tanstack/react-table";
 import { Ghost, MoreHorizontal, MoreHorizontalIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -38,6 +38,42 @@ async function deleteProductWrapper(id: number) {
     toast.success(data.data?.error);
   }
 }
+
+const ActionCell = ({ row }: { row: Row<ProductColumn> }) => {
+  const { execute, status } = useAction(deleteProduct, {
+    onSuccess: (data) => {
+      if (data.data?.success) {
+        toast.success(data.data?.success);
+      }
+      if (data.data?.error) {
+        toast.success(data.data?.error);
+      }
+    },
+  });
+  const product = row.original;
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <Button variant={"ghost"} className="h-8 w-8 p-0">
+          <MoreHorizontalIcon />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel asChild>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="dark:focus:bg-primary focus:bg-primary/50 cursor-pointer">
+          Edit Product
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => execute({ id: product.id })}
+          className="dark:focus:bg-destructive focus:bg-destructive/50 cursor-pointer"
+        >
+          Delete Product
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
 
 export const columns: ColumnDef<ProductColumn>[] = [
   {
@@ -86,30 +122,6 @@ export const columns: ColumnDef<ProductColumn>[] = [
   {
     id: "actions",
     header: "Actions",
-    cell: ({ row }) => {
-      const product = row.original;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant={"ghost"} className="h-8 w-8 p-0">
-              <MoreHorizontalIcon />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel asChild>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="dark:focus:bg-primary focus:bg-primary/50 cursor-pointer">
-              Edit Product
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => deleteProductWrapper(product.id)}
-              className="dark:focus:bg-destructive focus:bg-destructive/50 cursor-pointer"
-            >
-              Delete Product
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+    cell: ActionCell,
   },
 ];
