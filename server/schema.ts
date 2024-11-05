@@ -113,15 +113,14 @@ export const products = pgTable("products", {
   price: real("price").notNull(),
 });
 
-export const productVariants = pgTable("ProductVariants", {
+export const productVariants = pgTable("productVariants", {
   id: serial("id").primaryKey(),
   color: text("color").notNull(),
   productType: text("productType").notNull(),
+  updated: timestamp("updated").defaultNow(),
   productID: serial("productID")
     .notNull()
-    .references(() => products.id, {
-      onDelete: "cascade",
-    }),
+    .references(() => products.id, { onDelete: "cascade" }),
 });
 
 export const variantImages = pgTable("variantImages", {
@@ -132,9 +131,7 @@ export const variantImages = pgTable("variantImages", {
   order: real("order").notNull(),
   variantID: serial("variantID")
     .notNull()
-    .references(() => productVariants.id, {
-      onDelete: "cascade",
-    }),
+    .references(() => productVariants.id, { onDelete: "cascade" }),
 });
 
 export const variantTags = pgTable("variantTags", {
@@ -142,9 +139,7 @@ export const variantTags = pgTable("variantTags", {
   tag: text("tag").notNull(),
   variantID: serial("variantID")
     .notNull()
-    .references(() => productVariants.id, {
-      onDelete: "cascade",
-    }),
+    .references(() => productVariants.id, { onDelete: "cascade" }),
 });
 
 export const productRelations = relations(products, ({ many }) => ({
@@ -172,7 +167,7 @@ export const variantImagesRelations = relations(variantImages, ({ one }) => ({
   }),
 }));
 
-export const variantTagsRelations = relations(variantImages, ({ one }) => ({
+export const variantTagsRelations = relations(variantTags, ({ one }) => ({
   productVariants: one(productVariants, {
     fields: [variantTags.variantID],
     references: [productVariants.id],
