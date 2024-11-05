@@ -17,6 +17,7 @@ import Image from "next/image";
 import { useAction } from "next-safe-action/hooks";
 import { deleteProduct } from "@/server/actions/delete-product";
 import { toast } from "sonner";
+import Link from "next/link";
 
 type ProductColumn = {
   title: string;
@@ -62,7 +63,9 @@ const ActionCell = ({ row }: { row: Row<ProductColumn> }) => {
         <DropdownMenuLabel asChild>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="dark:focus:bg-primary focus:bg-primary/50 cursor-pointer">
-          Edit Product
+          <Link href={`/dashboard/add-product?id=${product.id}`}>
+            Edit Product
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => execute({ id: product.id })}
