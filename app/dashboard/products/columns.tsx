@@ -1,7 +1,12 @@
 "use client";
 
 import { ColumnDef, Row } from "@tanstack/react-table";
-import { Ghost, MoreHorizontal, MoreHorizontalIcon } from "lucide-react";
+import {
+  Ghost,
+  MoreHorizontal,
+  MoreHorizontalIcon,
+  PlusCircle,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,12 +23,20 @@ import { useAction } from "next-safe-action/hooks";
 import { deleteProduct } from "@/server/actions/delete-product";
 import { toast } from "sonner";
 import Link from "next/link";
+import { VariantsWithImagesTags } from "@/lib/infer-types";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import ProductVariant from "./product-variant";
 
 type ProductColumn = {
   title: string;
   price: number;
   image: string;
-  variants: any;
+  variants: VariantsWithImagesTags[];
   id: number;
 };
 
@@ -54,7 +67,7 @@ const ActionCell = ({ row }: { row: Row<ProductColumn> }) => {
   const product = row.original;
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button variant={"ghost"} className="h-8 w-8 p-0">
           <MoreHorizontalIcon />
         </Button>
@@ -90,6 +103,51 @@ export const columns: ColumnDef<ProductColumn>[] = [
   {
     accessorKey: "variants",
     header: "Variants",
+    cell: ({ row }) => {
+      const variants = row.getValue("variants") as VariantsWithImagesTags[];
+      return (
+        <div className="">
+          {variants.map((variant) => (
+            <div key={variant.id}>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <ProductVariant
+                      productID={variant.productID}
+                      variant={variant}
+                      editMode={true}
+                    >
+                      <div
+                        className="w-5 h-5 rounded-full"
+                        key={variant.id}
+                        style={{ background: variant.color }}
+                      />
+                    </ProductVariant>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{variant.productType}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          ))}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span>
+                  <ProductVariant productID={row.original.id} editMode={false}>
+                    <PlusCircle />
+                  </ProductVariant>
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Create a new product variant</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "price",
