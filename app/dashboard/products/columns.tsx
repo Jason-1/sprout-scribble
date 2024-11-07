@@ -30,7 +30,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import ProductVariant from "./product-variant";
+import { ProductVariant } from "./product-variant";
 
 type ProductColumn = {
   title: string;
