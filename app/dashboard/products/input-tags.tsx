@@ -6,7 +6,6 @@ import { Dispatch, forwardRef, SetStateAction, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { XIcon } from "lucide-react";
 
 type InputTagsProps = InputProps & {
@@ -32,7 +31,7 @@ export const InputTags = forwardRef<HTMLInputElement, InputTagsProps>(
     return (
       <div
         className={cn(
-          "flex min-h-[20px] w-full rounded-md border border-input bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          "w-full rounded-lg border border-input bg-background  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
           focused
             ? "ring-offset-2 outline-none ring-ring ring-2"
             : "ring-offset-0 outline-none ring-ring ring-0"
@@ -48,12 +47,18 @@ export const InputTags = forwardRef<HTMLInputElement, InputTagsProps>(
                 exit={{ scale: 0 }}
                 key={tag}
               >
-                <Badge variant={"secondary"}>{tag}</Badge>
-                <button
-                  onClick={() => onChange(value.filter((i) => i !== tag))}
-                >
-                  <XIcon className="w-3 ml-2" />
-                </button>
+                <Badge variant={"secondary"}>
+                  {tag}
+                  <button
+                    className="w-3 ml-1"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onChange(value.filter((i) => i !== tag));
+                    }}
+                  >
+                    <XIcon className="w-3 ml-2" />
+                  </button>
+                </Badge>
               </motion.div>
             ))}
           </AnimatePresence>
