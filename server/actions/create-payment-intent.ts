@@ -10,7 +10,8 @@ const action = createSafeActionClient();
 
 export const createPaymentIntent = action
   .schema(paymentIntentSchema)
-  .action(async ({ amount, cart, currency }) => {
+  .action(async ({ parsedInput }) => {
+    const { amount, cart, currency } = parsedInput;
     const user = await auth();
     if (!user) {
       return { error: "Please login to continue" };
