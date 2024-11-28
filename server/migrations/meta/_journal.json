@@ -120,6 +120,20 @@
       "when": 1732831769164,
       "tag": "0016_known_hitman",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1732833608474,
+      "tag": "0017_daffy_lady_mastermind",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1732833759691,
+      "tag": "0018_wise_tinkerer",
+      "breakpoints": true
     }
   ]
 }
