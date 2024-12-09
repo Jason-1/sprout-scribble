@@ -11,7 +11,7 @@ const action = createSafeActionClient();
 export const createOrder = action
   .schema(createOrderSchema)
   .action(async ({ parsedInput }) => {
-    const { products, total, status } = parsedInput;
+    const { products, total, status, paymentIntentID } = parsedInput;
     const user = await auth();
     if (!user) {
       return { error: "User not found" };
@@ -21,6 +21,7 @@ export const createOrder = action
       .insert(orders)
       .values({
         status,
+        paymentIntentID,
         total,
         userID: user.user.id,
       })
