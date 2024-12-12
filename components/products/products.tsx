@@ -30,7 +30,9 @@ export default function Products({ variants }: ProductTypes) {
           <div className="flex justify-between">
             <div className="font-medium">
               <h2>{variant.product.title}</h2>
-              <p className="text-sm">{variant.productType}</p>
+              <p className="text-sm text-muted-foreground">
+                {variant.productType}
+              </p>
             </div>
             <div>
               <Badge className="text-sm" variant={"secondary"}>
