@@ -78,7 +78,16 @@ function Hit({
     };
   };
 }) {
-  if (hit.objectID !== "8" && hit.objectID !== "9" && hit.objectID !== "10") {
+  if (
+    hit.objectID === "3" ||
+    hit.objectID === "6" ||
+    hit.objectID === "7" ||
+    hit.objectID === "15" ||
+    hit.objectID === "14" ||
+    hit.objectID === "13" ||
+    hit.objectID === "12" ||
+    hit.objectID === "11"
+  ) {
     return null;
   }
   console.log(hit);
