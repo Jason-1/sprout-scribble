@@ -18,6 +18,7 @@ export const deleteProduct = action
         .where(eq(products.id, id))
         .returning();
       revalidatePath("/dashboard/products");
+
       return { success: `Product ${data[0].title} has been deleted` };
     } catch (error) {
       return { error: "Failed to delete product" };
