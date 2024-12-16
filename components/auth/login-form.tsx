@@ -79,7 +79,7 @@ export const LoginForm = () => {
                     <FormItem>
                       <FormLabel>
                         {" "}
-                        We've sent you a 2 factor authentication email
+                        We&apos;ve sent you a 2 factor authentication email
                       </FormLabel>
                       <FormControl>
                         <InputOTP
