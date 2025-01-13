@@ -19,6 +19,9 @@ const config: Config = withUt({
       height: {
         "88": "22rem",
       },
+      spacing: {
+        "26": "5.75rem",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

@@ -17,8 +17,10 @@ export default async function Home() {
   });
   return (
     <main className="">
-      <Algolia />
-      <ProductTags />
+      <div className="sticky top-26 left-0 p-8 bg-background z-50 rounded-b-lg">
+        <Algolia />
+        <ProductTags />
+      </div>
       <Products variants={data} />
     </main>
   );
