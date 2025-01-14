@@ -67,6 +67,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <p className="text-2xl font-medium py-2">
               {formatPrice(variant.product.price)}
             </p>
+            <p className="text-xs text-gray-400 font-medium py-2">
+              GST: {formatPrice(variant.product.price * 0.15)}
+            </p>
             <div
               dangerouslySetInnerHTML={{ __html: variant.product.description }}
             ></div>

@@ -34,6 +34,13 @@ export default function CartItems() {
     });
   }, [totalPrice]);
 
+  const gstInLetters = useMemo(() => {
+    const gst = (totalPrice * 0.15).toFixed(2);
+    return [...gst.toString()].map((letter) => {
+      return { letter, id: createId() };
+    });
+  }, [totalPrice]);
+
   return (
     <motion.div className="flex flex-col items-center">
       {cart.length === 0 && (
@@ -117,10 +124,28 @@ export default function CartItems() {
         </div>
       )}
 
-      <motion.div className="flex items-center justify-center relative my-4 overflow-hidden">
+      <motion.div className="flex items-center justify-center relative my-0 overflow-hidden">
         <span className="text-md">Total: $</span>
         <AnimatePresence mode="popLayout">
           {priceInLetters.map((letter, i) => (
+            <motion.div key={letter.id}>
+              <motion.span
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+                exit={{ y: -20 }}
+                transition={{ delay: i * 0.1 }}
+                className="text-md inline-block"
+              >
+                {letter.letter}
+              </motion.span>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
+      <motion.div className="flex items-center justify-center relative my-4 overflow-hidden text-xs">
+        <span className="text-md">GST: $</span>
+        <AnimatePresence mode="popLayout">
+          {gstInLetters.map((letter, i) => (
             <motion.div key={letter.id}>
               <motion.span
                 initial={{ y: 20 }}
