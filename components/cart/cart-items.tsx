@@ -19,7 +19,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { Button } from "../ui/button";
 
 export default function CartItems() {
-  const { cart, addToCart, removeFromCart, setCheckoutProgress } =
+  const { cart, addToCart, removeFromCart, setCheckoutProgress, clearCart } =
     useCartStore();
 
   const totalPrice = useMemo(() => {
@@ -135,14 +135,24 @@ export default function CartItems() {
           ))}
         </AnimatePresence>
       </motion.div>
+
       <Button
         onClick={() => {
           setCheckoutProgress("payment-page");
         }}
-        className="max-w-md w-full"
+        className="max-w-md w-full mb-4"
         disabled={cart.length === 0}
       >
         Checkout
+      </Button>
+      <Button
+        onClick={() => {
+          clearCart();
+        }}
+        className="max-w-md w-full"
+        disabled={cart.length === 0}
+      >
+        Empty Cart
       </Button>
     </motion.div>
   );

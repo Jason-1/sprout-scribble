@@ -114,7 +114,7 @@ export const LoginForm = () => {
                         <FormControl>
                           <Input
                             {...field}
-                            placeholder="jason.j.cutts@gmail.com"
+                            placeholder="example@example.com"
                             type="email"
                             autoComplete="email"
                           />
