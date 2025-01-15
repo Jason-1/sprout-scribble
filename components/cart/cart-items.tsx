@@ -124,8 +124,13 @@ export default function CartItems() {
         </div>
       )}
 
+      <span className="text-md mt-4">
+        Total Items:{" "}
+        {cart.map((item) => item.variant.quantity).reduce((a, b) => a + b, 0)}
+      </span>
+
       <motion.div className="flex items-center justify-center relative my-0 overflow-hidden">
-        <span className="text-md">Total: $</span>
+        <span className="text-md">Total Price: $</span>
         <AnimatePresence mode="popLayout">
           {priceInLetters.map((letter, i) => (
             <motion.div key={letter.id}>
