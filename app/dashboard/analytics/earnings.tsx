@@ -28,6 +28,7 @@ export default function Earnings({
   const chartItems = totalOrders.map((order) => ({
     date: order.order.created!,
     revenue: order.order.total,
+    profit: order.order.total - order.product.purchasePrice,
   }));
 
   const activeChart = useMemo(() => {
@@ -51,10 +52,23 @@ export default function Earnings({
     return weeklyChart(chartItems).reduce((acc, item) => acc + item.revenue, 0);
   }, [filter]);
 
+  const activeProfit = useMemo(() => {
+    if (filter === "month") {
+      return monthlyChart(chartItems).reduce(
+        (acc, item) => acc + item.profit,
+        0
+      );
+    }
+    return weeklyChart(chartItems).reduce((acc, item) => acc + item.profit, 0);
+  }, [filter]);
+
   return (
     <Card className="flex-1 shrink-0 h-full">
       <CardHeader>
-        <CardTitle>Your Revenue: ${activeTotal}</CardTitle>
+        <CardTitle>
+          Your Revenue: ${activeTotal}
+          Your Profit: ${activeProfit}
+        </CardTitle>
         <CardDescription>History of your recent earnings</CardDescription>
         <div className="flex items-center gap-2">
           <Badge
