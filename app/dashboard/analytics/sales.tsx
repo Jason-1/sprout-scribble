@@ -35,6 +35,8 @@ export default function Sales({ totalOrders }: { totalOrders: TotalOrders[] }) {
               <TableHead>Customer</TableHead>
               <TableHead>Item</TableHead>
               <TableHead>Price</TableHead>
+              <TableHead>Purchase Price</TableHead>
+              <TableHead>Net Profit</TableHead>
               <TableHead>Quantity</TableHead>
               <TableHead>Image</TableHead>
             </TableRow>
@@ -69,7 +71,11 @@ export default function Sales({ totalOrders }: { totalOrders: TotalOrders[] }) {
                     )}
                   </TableCell>
                   <TableCell>{product.title}</TableCell>
-                  <TableCell>{product.price}</TableCell>
+                  <TableCell>${product.price}</TableCell>
+                  <TableCell>${product.purchasePrice}</TableCell>
+                  <TableCell>
+                    ${product.price - product.purchasePrice}
+                  </TableCell>
                   <TableCell>{quantity}</TableCell>
                   <TableCell>
                     <Image

@@ -1,0 +1,1 @@
+ALTER TABLE "password_reset_tokens" ALTER COLUMN "email" SET DEFAULT '0';

@@ -115,6 +115,7 @@ export const products = pgTable("products", {
   title: text("title").notNull(),
   created: timestamp("created").defaultNow(),
   price: real("price").notNull(),
+  purchasePrice: real("purchasePrice").notNull().default(0),
 });
 
 export const productVariants = pgTable("productVariants", {
