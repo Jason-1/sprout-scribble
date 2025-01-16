@@ -17,23 +17,26 @@ export default function ProductTags() {
   const params = useSearchParams();
   const tag = params.get("tag");
 
-  const setFilter = (tag: string) => {
-    if (tag) {
-      router.push(`?tag=${tag}`);
+  const setFilter = (newTag: string) => {
+    const searchParams = new URLSearchParams(params.toString());
+    if (newTag) {
+      searchParams.set("tag", newTag);
+    } else {
+      searchParams.delete("tag");
     }
-    if (!tag) {
-      router.push("/");
-    }
+    router.push(`?${searchParams.toString()}`);
   };
 
-  const setOrder = (order: string) => {
-    if (order) {
-      router.push(`?order=${order}`);
+  const setOrder = (newOrder: string) => {
+    const searchParams = new URLSearchParams(params.toString());
+    if (newOrder) {
+      searchParams.set("order", newOrder);
+    } else {
+      searchParams.delete("order");
     }
-    if (!order) {
-      router.push("/");
-    }
+    router.push(`?${searchParams.toString()}`);
   };
+
   return (
     <div className="flex items-center justify-between">
       <div className="my-4 flex gap-4 items-center">
@@ -83,17 +86,25 @@ export default function ProductTags() {
           White
         </Badge>
       </div>
-      Get order and tag working together
       <DropdownMenu>
         <DropdownMenuTrigger>Filter Options</DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>Order By</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => setOrder("")}>
+            No Order
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOrder("asc")}>
-            Price Ascending
+            Lowest Price
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOrder("desc")}>
-            Price Descending
+            Highest Price
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setOrder("new")}>
+            Newest First
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setOrder("rating")}>
+            Highest Rated
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

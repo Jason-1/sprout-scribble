@@ -12,30 +12,33 @@ type ProductTypes = {
   variants: VariantswithProduct[];
 };
 
-export default function Products({ variants }: ProductTypes) {
+export default async function Products({ variants }: ProductTypes) {
   const params = useSearchParams();
   const paramTag = params.get("tag");
   const paramOrder = params.get("order");
 
-  //read order as well as tag
-
   const filtered = useMemo(() => {
-    if (paramTag && variants) {
-      if (paramTag === "asc") {
-        variants.sort((a, b) => a.product.price - b.product.price);
-        return variants;
-      }
-      if (paramTag === "desc") {
-        variants.sort((a, b) => b.product.price - a.product.price);
-        return variants;
-      }
+    let output = variants;
+    console.log(variants);
 
-      return variants.filter((variant) =>
+    if (paramTag && variants) {
+      output = variants.filter((variant) =>
         variant.variantTags.some((tag) => tag.tag === paramTag)
       );
     }
+    if (paramOrder && variants) {
+      if (paramOrder === "asc") {
+        output = [...output].sort((a, b) => a.product.price - b.product.price);
+      }
+      if (paramOrder === "desc") {
+        output = [...output].sort((a, b) => b.product.price - a.product.price);
+      }
+      if (paramOrder === "new") {
+        output = [...output].sort((a, b) => b.product.id - a.product.id);
+      }
+    }
     //if selected asc or desc price order, order the products in here by price and return them
-    return variants;
+    return output;
   }, [paramTag, paramOrder]);
 
   return (
