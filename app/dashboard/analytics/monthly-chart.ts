@@ -20,7 +20,7 @@ export const monthlyChart = (
         .filter((order) => betweenWeeks(order.date, 21, 14))
         .reduce((acc, price) => acc + price.revenue, 0),
       profit: chartItems
-        .filter((order) => betweenWeeks(order.date, 28, 21))
+        .filter((order) => betweenWeeks(order.date, 21, 14))
         .reduce((acc, price) => acc + price.profit, 0),
     },
     {
@@ -29,7 +29,7 @@ export const monthlyChart = (
         .filter((order) => betweenWeeks(order.date, 14, 7))
         .reduce((acc, price) => acc + price.revenue, 0),
       profit: chartItems
-        .filter((order) => betweenWeeks(order.date, 28, 21))
+        .filter((order) => betweenWeeks(order.date, 14, 7))
         .reduce((acc, price) => acc + price.profit, 0),
     },
     {
@@ -38,7 +38,7 @@ export const monthlyChart = (
         .filter((order) => betweenWeeks(order.date, 7, 0))
         .reduce((acc, price) => acc + price.revenue, 0),
       profit: chartItems
-        .filter((order) => betweenWeeks(order.date, 28, 21))
+        .filter((order) => betweenWeeks(order.date, 7, 0))
         .reduce((acc, price) => acc + price.profit, 0),
     },
   ];

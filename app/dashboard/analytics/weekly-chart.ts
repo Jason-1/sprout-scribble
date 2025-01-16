@@ -19,7 +19,7 @@ export const weeklyChart = (
         .filter((order) => CheckDate(order.date, 5))
         .reduce((acc, price) => acc + price.revenue, 0),
       profit: chartItems
-        .filter((order) => CheckDate(order.date, 6))
+        .filter((order) => CheckDate(order.date, 5))
         .reduce((acc, price) => acc + price.profit, 0),
     },
     {
@@ -28,7 +28,7 @@ export const weeklyChart = (
         .filter((order) => CheckDate(order.date, 4))
         .reduce((acc, price) => acc + price.revenue, 0),
       profit: chartItems
-        .filter((order) => CheckDate(order.date, 6))
+        .filter((order) => CheckDate(order.date, 4))
         .reduce((acc, price) => acc + price.profit, 0),
     },
     {
@@ -37,7 +37,7 @@ export const weeklyChart = (
         .filter((order) => CheckDate(order.date, 3))
         .reduce((acc, price) => acc + price.revenue, 0),
       profit: chartItems
-        .filter((order) => CheckDate(order.date, 6))
+        .filter((order) => CheckDate(order.date, 3))
         .reduce((acc, price) => acc + price.profit, 0),
     },
     {
@@ -46,7 +46,7 @@ export const weeklyChart = (
         .filter((order) => CheckDate(order.date, 2))
         .reduce((acc, price) => acc + price.revenue, 0),
       profit: chartItems
-        .filter((order) => CheckDate(order.date, 6))
+        .filter((order) => CheckDate(order.date, 2))
         .reduce((acc, price) => acc + price.profit, 0),
     },
     {
@@ -55,7 +55,7 @@ export const weeklyChart = (
         .filter((order) => CheckDate(order.date, 1))
         .reduce((acc, price) => acc + price.revenue, 0),
       profit: chartItems
-        .filter((order) => CheckDate(order.date, 6))
+        .filter((order) => CheckDate(order.date, 1))
         .reduce((acc, price) => acc + price.profit, 0),
     },
     {
@@ -64,7 +64,7 @@ export const weeklyChart = (
         .filter((order) => CheckDate(order.date, 0))
         .reduce((acc, price) => acc + price.revenue, 0),
       profit: chartItems
-        .filter((order) => CheckDate(order.date, 6))
+        .filter((order) => CheckDate(order.date, 0))
         .reduce((acc, price) => acc + price.profit, 0),
     },
   ];

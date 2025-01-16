@@ -28,7 +28,7 @@ export default function Earnings({
   const chartItems = totalOrders.map((order) => ({
     date: order.order.created!,
     revenue: order.order.total,
-    profit: order.order.total - order.product.purchasePrice,
+    profit: order.order.total - order.product.purchasePrice * order.quantity,
   }));
 
   const activeChart = useMemo(() => {
