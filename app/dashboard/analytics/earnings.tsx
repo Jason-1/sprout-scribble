@@ -105,13 +105,13 @@ export default function Earnings({
                 content={(props) => (
                   <div>
                     {props.payload?.map((item) => {
-                      console.log(item);
                       return (
                         <div
                           className="bg-primary py-2 px-4 rounded-md shadow-lg"
                           key={item.payload.date}
                         >
                           <p>Revenue: ${item.value}</p>
+                          <p>Profit: ${item.payload.profit}</p>
                           <p>Date: {item.payload.date}</p>
                         </div>
                       );
