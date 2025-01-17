@@ -12,7 +12,7 @@ const action = createSafeActionClient();
 export const createProduct = action
   .schema(ProductSchema)
   .action(async ({ parsedInput }) => {
-    const { description, price, title, id } = parsedInput;
+    const { description, price, title, id, purchasePrice } = parsedInput;
 
     try {
       if (id) {
@@ -35,7 +35,7 @@ export const createProduct = action
       if (!id) {
         const newProduct = await db
           .insert(products)
-          .values({ description, price, title })
+          .values({ description, price, title, purchasePrice })
           .returning();
         revalidatePath("/dashboard/products");
         return {

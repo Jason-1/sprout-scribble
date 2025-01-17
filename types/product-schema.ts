@@ -9,6 +9,9 @@ export const ProductSchema = z.object({
   price: z.coerce
     .number({ message: "Price must be numerical" })
     .positive({ message: "Price must be a positive number" }),
+  purchasePrice: z.coerce
+    .number({ message: "Price must be numerical" })
+    .positive({ message: "Price must be a positive number" }),
 });
 
 export type zProductSchema = z.infer<typeof ProductSchema>;

@@ -1,0 +1,1 @@
+ALTER TABLE "products" ALTER COLUMN "purchasePrice" DROP DEFAULT;

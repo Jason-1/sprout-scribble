@@ -155,6 +155,31 @@ export default function ProductForm() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="purchasePrice"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Wholesale Price</FormLabel>
+                  <FormControl>
+                    <div className="flex items-center gap-2">
+                      <DollarSign
+                        size={36}
+                        className="p-2 bg-muted rounded-md"
+                      />
+                      <Input
+                        {...field}
+                        type="number"
+                        placeholder="Your Price in USD"
+                        step="0.01"
+                        min={0}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button
               disabled={
                 status === "executing" ||
