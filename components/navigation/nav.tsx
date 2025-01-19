@@ -10,7 +10,7 @@ export default async function Nav() {
   const session = await auth();
 
   return (
-    <header className="sticky top-0 left-0 p-8 dark:bg-background bg-background z-50">
+    <header className="sticky top-0 left-0 p-8 dark:bg-colors-darkThemeBackground bg-background z-50">
       <nav>
         <ul className="flex justify-between items-center md:gap-8 gap-4">
           <li className="flex flex-1">

@@ -63,6 +63,9 @@ const config: Config = withUt({
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        colors: {
+          darkThemeBackground: "#1c1b22", // Add your custom hex color here
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
